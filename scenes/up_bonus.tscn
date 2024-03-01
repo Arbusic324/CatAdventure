@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvv7bup8xxgc4"]
+
+[ext_resource type="Script" path="res://scripts/Up_bonus.gd" id="1_sgh6d"]
+[ext_resource type="Texture2D" uid="uid://dtkcywaqjfkdm" path="res://icons/TileMapTest.png" id="2_urweu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x6iv"]
+size = Vector2(120, 22)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0700d"]
+texture = ExtResource("2_urweu")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_o3tcl"]
+sources/0 = SubResource("TileSetAtlasSource_0700d")
+
+[node name="Up_bonus" type="Node2D"]
+script = ExtResource("1_sgh6d")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(64, -5)
+shape = SubResource("RectangleShape2D_8x6iv")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_o3tcl")
+format = 2
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

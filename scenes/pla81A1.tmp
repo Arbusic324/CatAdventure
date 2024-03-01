@@ -1,0 +1,352 @@
+[gd_scene load_steps=22 format=3 uid="uid://d0bpshyhqttxe"]
+
+[ext_resource type="Script" path="res://scripts/Player_cat.gd" id="1_xul5c"]
+[ext_resource type="Texture2D" uid="uid://dsurm31bwu8a0" path="res://icons/cat.png" id="2_jxluv"]
+[ext_resource type="Texture2D" uid="uid://ci5dgxs4mep0q" path="res://icons/HEART.png" id="3_nm4iv"]
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="3_o7ctx"]
+[ext_resource type="Script" path="res://scenes/ritm_bar.gd" id="5_1tghr"]
+[ext_resource type="Texture2D" uid="uid://l8bbkdb4a3ol" path="res://icons/rtmh.bar.png" id="6_rlayo"]
+[ext_resource type="AudioStream" uid="uid://b24yddctg14ur" path="res://sounds/Redeem.mp3" id="7_x4vdn"]
+[ext_resource type="AudioStream" uid="uid://ycypwlqyiarp" path="res://sounds/pickupitem.mp3" id="8_e6c31"]
+[ext_resource type="AudioStream" uid="uid://c5cmjngfudjsq" path="res://sounds/PolDamage.mp3" id="9_04d81"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkxab"]
+size = Vector2(13, 9)
+
+[sub_resource type="Animation" id="Animation_6l5pi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_r5sbw"]
+resource_name = "heart_redeem"
+length = 2.00001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_7rr0a"]
+resource_name = "reality_off"
+length = 0.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+
+[sub_resource type="Animation" id="Animation_moa4y"]
+resource_name = "reality_on"
+length = 0.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5i25j"]
+resource_name = "take_damage"
+length = 2.00001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jain7"]
+_data = {
+"RESET": SubResource("Animation_6l5pi"),
+"heart_redeem": SubResource("Animation_r5sbw"),
+"reality_off": SubResource("Animation_7rr0a"),
+"reality_on": SubResource("Animation_moa4y"),
+"take_damage": SubResource("Animation_5i25j")
+}
+
+[sub_resource type="Animation" id="Animation_e7k4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_1a45u"]
+resource_name = "active"
+length = 1.00001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_dwd5a"]
+resource_name = "reality_Off"
+length = 0.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p4seg"]
+resource_name = "reality_on"
+length = 0.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jd3g5"]
+_data = {
+"RESET": SubResource("Animation_e7k4h"),
+"active": SubResource("Animation_1a45u"),
+"reality_Off": SubResource("Animation_dwd5a"),
+"reality_on": SubResource("Animation_p4seg")
+}
+
+[node name="Player_cat" type="CharacterBody2D"]
+process_priority = 1
+position = Vector2(45, -27)
+script = ExtResource("1_xul5c")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 3.5)
+shape = SubResource("RectangleShape2D_rkxab")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_jxluv")
+vframes = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="HUD" type="Node2D" parent="."]
+script = ExtResource("3_o7ctx")
+metadata/_edit_lock_ = true
+
+[node name="Heart_1" type="Node2D" parent="HUD"]
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/Heart_1"]
+position = Vector2(5, 10)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_nm4iv")
+hframes = 4
+vframes = 5
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Heart_1"]
+libraries = {
+"": SubResource("AnimationLibrary_jain7")
+}
+speed_scale = 2.0
+
+[node name="Heart_2" type="Node2D" parent="HUD"]
+position = Vector2(-5.5, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/Heart_2"]
+position = Vector2(5, 10)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_nm4iv")
+hframes = 4
+vframes = 5
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Heart_2"]
+libraries = {
+"": SubResource("AnimationLibrary_jain7")
+}
+speed_scale = 2.0
+
+[node name="Heart_3" type="Node2D" parent="HUD"]
+position = Vector2(-11, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/Heart_3"]
+position = Vector2(5, 10)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_nm4iv")
+hframes = 4
+vframes = 5
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Heart_3"]
+libraries = {
+"": SubResource("AnimationLibrary_jain7")
+}
+speed_scale = 2.0
+
+[node name="Timer" type="Timer" parent="HUD"]
+wait_time = 1.4
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="HUD"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer3" type="Timer" parent="HUD"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer4" type="Timer" parent="HUD"]
+wait_time = 0.3
+one_shot = true
+
+[node name="ritm_bar" type="Node2D" parent="HUD"]
+script = ExtResource("5_1tghr")
+
+[node name="part_1" type="Node2D" parent="HUD/ritm_bar"]
+position = Vector2(-4, -10)
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/ritm_bar/part_1"]
+scale = Vector2(0.25, 0.5)
+texture = ExtResource("6_rlayo")
+hframes = 3
+vframes = 4
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/ritm_bar/part_1"]
+libraries = {
+"": SubResource("AnimationLibrary_jd3g5")
+}
+
+[node name="part_2" type="Node2D" parent="HUD/ritm_bar"]
+position = Vector2(4, -10)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/ritm_bar/part_2"]
+scale = Vector2(0.5, 1)
+texture = ExtResource("6_rlayo")
+flip_h = true
+hframes = 3
+vframes = 4
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/ritm_bar/part_2"]
+libraries = {
+"": SubResource("AnimationLibrary_jd3g5")
+}
+
+[node name="Time_vzaimodeystvia" type="Timer" parent="HUD/ritm_bar"]
+wait_time = 0.39
+one_shot = true
+
+[node name="Timer" type="Timer" parent="HUD/ritm_bar"]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HUD/ritm_bar"]
+stream = ExtResource("7_x4vdn")
+
+[node name="Time_window_anim" type="Timer" parent="HUD/ritm_bar"]
+wait_time = 0.87
+one_shot = true
+
+[node name="Replay" type="Timer" parent="HUD/ritm_bar"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Time_to_next_damage" type="Timer" parent="."]
+wait_time = 1.6
+one_shot = true
+
+[node name="Time_to_redeem" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="interaction_luck" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_e6c31")
+
+[node name="interaction_fail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_04d81")
+
+[node name="Time_to_can_interaction" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="Heart_bonus" from="." to="HUD" method="_on_player_cat_heart_bonus"]
+[connection signal="Take_damage" from="." to="HUD" method="_on_player_cat_take_damage"]
+[connection signal="interaction" from="." to="HUD/ritm_bar" method="_on_player_cat_interaction"]
+[connection signal="ritm_off" from="." to="HUD/ritm_bar" method="_on_player_cat_ritm_off"]
+[connection signal="ritm_on" from="." to="HUD/ritm_bar" method="_on_player_cat_ritm_on"]
+[connection signal="timeout" from="HUD/Timer" to="HUD" method="_on_timer_timeout"]
+[connection signal="timeout" from="HUD/Timer2" to="HUD" method="_on_timer_2_timeout"]
+[connection signal="timeout" from="HUD/Timer3" to="HUD" method="_on_timer_3_timeout"]
+[connection signal="timeout" from="HUD/Timer4" to="HUD" method="_on_timer_4_timeout"]
+[connection signal="ritm_window_off" from="HUD/ritm_bar" to="." method="_on_ritm_bar_ritm_window_off"]
+[connection signal="ritm_window_on" from="HUD/ritm_bar" to="." method="_on_ritm_bar_ritm_window_on"]
+[connection signal="timeout" from="HUD/ritm_bar/Time_vzaimodeystvia" to="HUD/ritm_bar" method="_on_time_vzaimodeystvia_timeout"]
+[connection signal="timeout" from="HUD/ritm_bar/Timer" to="HUD/ritm_bar" method="_on_timer_timeout"]
+[connection signal="timeout" from="HUD/ritm_bar/Replay" to="HUD/ritm_bar" method="_on_replay_timeout"]
+[connection signal="timeout" from="Time_to_next_damage" to="." method="_on_time_to_next_damage_timeout"]
+[connection signal="timeout" from="Time_to_redeem" to="." method="_on_time_to_redeem_timeout"]
+[connection signal="timeout" from="Time_to_can_interaction" to="." method="_on_time_to_can_interaction_timeout"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://l3sqs6jfkwq2"]
+
+[ext_resource type="Texture2D" uid="uid://dtkcywaqjfkdm" path="res://TileMapTest.png" id="1_xia5a"]
+[ext_resource type="PackedScene" uid="uid://d0bpshyhqttxe" path="res://player_cat.tscn" id="2_4kbh7"]
+[ext_resource type="PackedScene" uid="uid://b44lkwvl6j6t4" path="res://new_checkpoint.tscn" id="3_jx1wq"]
+[ext_resource type="PackedScene" uid="uid://dryboey8utf6y" path="res://trap_slow.tscn" id="4_ulisp"]
+[ext_resource type="PackedScene" uid="uid://pj8ps3vw0iug" path="res://food_for_heart.tscn" id="5_u7a4g"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1a3le"]
+texture = ExtResource("1_xia5a")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, 4, -4, 4, -4, 0, 0, 0, 0, -4, 4, -4, 4, -8, 8, -8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 1.14286, -8, 1.14286, -1.14286, 8, -1.14286)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -1.14286, -8, -1.14286)
+
+[sub_resource type="TileSet" id="TileSet_efluo"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_1a3le")
+
+[node name="World" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_efluo")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 131072, 0, 0, 131072, 0, 1, 131072, 0, 2, 131072, 0, 3, 131072, 0, 65534, 65536, 268435458, 4, 0, 1, 131070, 131072, 0, 196606, 131072, 0, 131071, 131072, 0, 196607, 131072, 0, 131072, 131072, 0, 65536, 131072, 0, 131073, 131072, 0, 65537, 131072, 0, 65538, 131072, 0, 131074, 131072, 0, 65539, 131072, 0, 65540, 131072, 0, 131076, 131072, 0, 131075, 131072, 0, 5, 131072, 0, 65541, 131072, 0, 131077, 131072, 0, 131078, 131072, 0, 65542, 131072, 0, 6, 131072, 0, 65543, 131072, 0, 7, 131072, 0, 8, 131072, 0, 65544, 131072, 0, 131080, 131072, 0, 131079, 131072, 0, 65533, 131072, 2, 65532, 65536, 2, 131068, 131072, 0, 196604, 131072, 0, 196605, 131072, 0, 131069, 131072, 0, 196603, 131072, 0, 131067, 131072, 0, 65531, 131072, 0, -5, 131072, 0, -6, 131072, 0, 65530, 131072, 0, 131066, 131072, 0, 196602, 131072, 0, -65527, 0, 2, -131062, 0, 2, 9, 131072, 0, 65545, 131072, 0, 131081, 131072, 0, 131082, 131072, 0, 65546, 131072, 0, 10, 131072, 0, -65526, 131072, 0, 65547, 131072, 0, 11, 131072, 0, -65525, 131072, 0, -131061, 131072, 0, 131083, 131072, 0, 131084, 131072, 0, 65548, 131072, 0, 12, 131072, 0, -65524, 131072, 0, -131060, 131072, 0, -131059, 131072, 0, -65523, 131072, 0, 13, 131072, 0, 65549, 131072, 0, 131085, 131072, 0, 131086, 131072, 0, 65550, 131072, 0, 14, 131072, 0, -65522, 131072, 0, -131058, 0, 0, -131057, 131072, 0, -131056, 131072, 0, -65520, 131072, 0, 16, 131072, 0, 15, 131072, 0, 65551, 131072, 0, -65521, 131072, 0, 65552, 131072, 0, 131088, 131072, 0, 131087, 131072, 0, 131089, 131072, 0, 65553, 131072, 0, 17, 131072, 0, -65519, 131072, 0, -131055, 131072, 0, -196592, 65536, 1, -196588, 65536, 1, -131054, 131072, 0, -65518, 131072, 0, 18, 131072, 0, 65555, 131072, 0, 131091, 131072, 0, 131090, 131072, 0, 65554, 131072, 0, 19, 131072, 0, -65517, 131072, 0, -131053, 131072, 0, -131052, 131072, 0, -65516, 131072, 0, 20, 131072, 0, 65556, 131072, 0, 131092, 131072, 0, 65557, 131072, 0, 21, 131072, 0, -65515, 131072, 0, -131051, 131072, 0, 131093, 131072, 0, -262128, 65536, 1, -327665, 131072, 0, -327664, 131072, 0, -327663, 131072, 0, -327662, 131072, 0, -327661, 131072, 0, -327660, 131072, 0, -327659, 131072, 0, -262124, 65536, 1, -131050, 65536, 0, -65514, 131072, 0, 22, 131072, 0, 65558, 131072, 0, 131094, 131072, 0, 131095, 131072, 0, 65559, 131072, 0, 23, 131072, 0, -65513, 131072, 0, -131049, 131072, 0, 24, 131072, 0, 65560, 131072, 0, -65512, 131072, 0, -131048, 131072, 0, 25, 131072, 0, 65561, 131072, 0, 131097, 131072, 0, 131096, 131072, 0, -65511, 131072, 0, -65510, 131072, 0, -131046, 131072, 0, -131047, 131072, 0, -65509, 131072, 0, 27, 131072, 0, 26, 131072, 0, 65562, 131072, 0, 131098, 131072, 0, 131099, 131072, 0, 65563, 131072, 0, -131045, 131072, 0, -131044, 131072, 0, -65508, 131072, 0, 28, 131072, 0, 65564, 131072, 0, 65565, 131072, 0, 29, 131072, 0, -65507, 131072, 0, -65506, 131072, 0, 30, 131072, 0, 131101, 131072, 0, 131100, 131072, 0, 65566, 131072, 0, -131043, 131072, 0, -131042, 131072, 0, 131102, 131072, 0)
+
+[node name="Player_cat" parent="." instance=ExtResource("2_4kbh7")]
+position = Vector2(72, -8)
+
+[node name="new_checkpoint" parent="." instance=ExtResource("3_jx1wq")]
+position = Vector2(232, -40)
+
+[node name="trap_slow" parent="." instance=ExtResource("4_ulisp")]
+position = Vector2(-39, 0)
+
+[node name="food_for_heart" parent="." instance=ExtResource("5_u7a4g")]
+position = Vector2(360, -39)
+
+[connection signal="new_checkpoint" from="new_checkpoint" to="Player_cat" method="_on_new_checkpoint_new_checkpoint"]
+[connection signal="no_touched_slow_trap" from="trap_slow" to="Player_cat" method="_on_trap_slow_no_touched_slow_trap"]
+[connection signal="touched_slow_trap" from="trap_slow" to="Player_cat" method="_on_trap_slow_touched_slow_trap"]
+[connection signal="heart_bonus" from="food_for_heart" to="Player_cat" method="_on_food_for_heart_heart_bonus"]

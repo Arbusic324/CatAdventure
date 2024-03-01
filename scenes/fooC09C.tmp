@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://pj8ps3vw0iug"]
+
+[ext_resource type="Script" path="res://scripts/food_for_heart.gd" id="1_5p4ci"]
+[ext_resource type="Texture2D" uid="uid://by6f7naqvqits" path="res://icons/food_1.png" id="2_8t7gu"]
+[ext_resource type="Texture2D" uid="uid://c0k88j37w2dfy" path="res://icons/food_2.png" id="3_sp4ai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_egnxp"]
+radius = 5.09902
+
+[node name="food_for_heart" type="CharacterBody2D"]
+script = ExtResource("1_5p4ci")
+metadata/_edit_group_ = true
+
+[node name="Node2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D"]
+shape = SubResource("CircleShape2D_egnxp")
+
+[node name="food_1" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8t7gu")
+
+[node name="food_2" type="Sprite2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_sp4ai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_egnxp")
+disabled = true
+
+[connection signal="body_entered" from="Node2D" to="." method="_on_node_2d_body_entered"]

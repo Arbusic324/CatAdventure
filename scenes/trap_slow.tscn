@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dryboey8utf6y"]
+
+[ext_resource type="Script" path="res://scripts/trap_slow.gd" id="1_cf1ww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttkbg"]
+size = Vector2(68, 10)
+
+[node name="trap_slow" type="Node2D"]
+script = ExtResource("1_cf1ww")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_ttkbg")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
