@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://l3sqs6jfkwq2"]
+[gd_scene load_steps=16 format=3 uid="uid://l3sqs6jfkwq2"]
 
 [ext_resource type="Texture2D" uid="uid://dtkcywaqjfkdm" path="res://icons/TileMapTest.png" id="1_xia5a"]
 [ext_resource type="PackedScene" uid="uid://d0bpshyhqttxe" path="res://scenes/player_cat.tscn" id="2_4kbh7"]
@@ -711,6 +711,7 @@ position = Vector2(420, -33)
 scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_tydws")
 format = 2
+layer_0/tile_data = PackedInt32Array(-458726, 1, 0, -458725, 65537, 0, -458724, 131073, 0, -458723, 196609, 0)
 
 [node name="platform" type="Node2D" parent="."]
 
