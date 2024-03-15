@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://l3sqs6jfkwq2"]
+[gd_scene load_steps=18 format=3 uid="uid://l3sqs6jfkwq2"]
 
 [ext_resource type="Texture2D" uid="uid://dtkcywaqjfkdm" path="res://icons/TileMapTest.png" id="1_xia5a"]
 [ext_resource type="PackedScene" uid="uid://d0bpshyhqttxe" path="res://scenes/player_cat.tscn" id="2_4kbh7"]
@@ -718,13 +718,12 @@ layer_0/tile_data = PackedInt32Array(-458726, 1, 0, -458725, 65537, 0, -458724, 
 [node name="test_platform" parent="platform" instance=ExtResource("10_jfue0")]
 position = Vector2(587, -45)
 move_y = 20
-n_p = 1
-time_to_move = 2
+n_p = 5
 
 [node name="platform_toggle" parent="platform" instance=ExtResource("11_ldiwv")]
 z_index = -1
 position = Vector2(537, -51)
-number_platform = 1
+number_platform = 5
 
 [connection signal="Flip_h" from="Player_cat" to="new_checkpoint" method="_on_player_cat_flip_h"]
 [connection signal="Flip_h__" from="Player_cat" to="new_checkpoint" method="_on_player_cat_flip_h__"]
@@ -758,4 +757,5 @@ number_platform = 1
 [connection signal="proverka_hp" from="food_for_heart2" to="Player_cat" method="_on_food_for_heart_2_proverka_hp"]
 [connection signal="proverka_hp" from="food_for_heart3" to="Player_cat" method="_on_food_for_heart_3_proverka_hp"]
 [connection signal="n_p" from="platform/platform_toggle" to="platform/test_platform" method="_on_platform_toggle_n_p"]
+[connection signal="player_int" from="platform/platform_toggle" to="Player_cat" method="_on_platform_toggle_player_int"]
 [connection signal="push_n_p" from="platform/platform_toggle" to="platform/test_platform" method="_on_platform_toggle_push_n_p"]

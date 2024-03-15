@@ -2,6 +2,7 @@ extends Node2D
 signal n_p
 signal push_n_p
 var number_push
+signal player_int
 var active = false
 var can_int = true
 var pressed = false
@@ -13,6 +14,7 @@ func _ready():
 	can_int = true
 func _process(delta):
 	if Input.is_action_just_pressed("interaction") and can_int:
+		emit_signal("player_int")
 		if not pressed:
 			pressed = true
 			$Sprite2D/AnimationPlayer.play("toggle_on")
@@ -22,7 +24,6 @@ func _process(delta):
 		while number_push < number_platform:
 			number_push += 1
 			emit_signal("n_p")
-			print(number_push)
 		if number_push > (number_platform -1):
 			can_int = false
 			emit_signal("push_n_p")
