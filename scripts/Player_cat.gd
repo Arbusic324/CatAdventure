@@ -335,3 +335,7 @@ func _on_food_for_heart_2_proverka_hp():
 	heal()
 func _on_food_for_heart_3_proverka_hp():
 	heal()
+
+
+func _on_platform_toggle_player_int():
+	emit_signal("new_checkpoint")

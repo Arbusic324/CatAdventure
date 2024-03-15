@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://6xp4osbnbpy5"]
+
+[ext_resource type="Script" path="res://scenes/node_2d.gd" id="1_6vid0"]
+[ext_resource type="Texture2D" uid="uid://beqs8lh4d7ith" path="res://icons/test_podjom.png" id="1_pbqrl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlxd2"]
+size = Vector2(46, 18)
+
+[node name="test_platform" type="AnimatableBody2D"]
+script = ExtResource("1_6vid0")
+move_y = 10
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_vlxd2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pbqrl")
+vframes = 2
+
+[node name="verevka1" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_pbqrl")
+vframes = 2
+frame = 1
+
+[node name="verevka2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -32)
+texture = ExtResource("1_pbqrl")
+vframes = 2
+frame = 1
+
+[node name="time_to_move" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+
+[connection signal="timeout" from="time_to_move" to="." method="_on_time_to_move_timeout"]
