@@ -1,35 +1,31 @@
 [gd_scene load_steps=4 format=3 uid="uid://6xp4osbnbpy5"]
 
 [ext_resource type="Script" path="res://scenes/node_2d.gd" id="1_6vid0"]
-[ext_resource type="Texture2D" uid="uid://beqs8lh4d7ith" path="res://icons/test_podjom.png" id="1_pbqrl"]
+[ext_resource type="Texture2D" uid="uid://cjlh7f0vjn1g7" path="res://icons/podjomnik_1.png" id="2_j2iwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlxd2"]
-size = Vector2(46, 18)
+size = Vector2(64, 5)
 
 [node name="test_platform" type="AnimatableBody2D"]
 script = ExtResource("1_6vid0")
 move_y = 10
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+visible = false
+position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_vlxd2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_pbqrl")
-vframes = 2
+[node name="perila" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(0, -5)
+texture = ExtResource("2_j2iwo")
+vframes = 3
+frame = 2
 
-[node name="verevka1" type="Sprite2D" parent="."]
+[node name="main" type="Sprite2D" parent="."]
 z_index = -1
-texture = ExtResource("1_pbqrl")
-vframes = 2
-frame = 1
-
-[node name="verevka2" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(0, -32)
-texture = ExtResource("1_pbqrl")
-vframes = 2
+texture = ExtResource("2_j2iwo")
+vframes = 3
 frame = 1
 
 [node name="time_to_move" type="Timer" parent="."]
