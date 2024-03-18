@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bcagtkac1w1ab" path="res://scenes/hud.tscn" id="7_dn5jq"]
 [ext_resource type="PackedScene" uid="uid://dfvkd1l7kk3ou" path="res://scenes/bg_city.tscn" id="8_fbpaf"]
 [ext_resource type="Texture2D" uid="uid://d0igw4ae67ii8" path="res://icons/tile_map_1.png" id="9_pb42i"]
-[ext_resource type="PackedScene" uid="uid://6xp4osbnbpy5" path="res://scenes/node_2d.tscn" id="10_jfue0"]
+[ext_resource type="PackedScene" uid="uid://6xp4osbnbpy5" path="res://scenes/move_platform.tscn" id="10_jfue0"]
 [ext_resource type="PackedScene" uid="uid://ctw60idsdpm37" path="res://scenes/platform_toggle.tscn" id="11_ldiwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1a3le"]
@@ -716,8 +716,8 @@ layer_0/tile_data = PackedInt32Array(-458726, 1, 0, -458725, 65537, 0, -458724, 
 [node name="platform" type="Node2D" parent="."]
 
 [node name="test_platform" parent="platform" instance=ExtResource("10_jfue0")]
-position = Vector2(587, -45)
-move_y = 20
+position = Vector2(589, -66)
+move_y = 10
 n_p = 5
 
 [node name="platform_toggle" parent="platform" instance=ExtResource("11_ldiwv")]

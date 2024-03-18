@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://6xp4osbnbpy5"]
 
-[ext_resource type="Script" path="res://scenes/node_2d.gd" id="1_6vid0"]
+[ext_resource type="Script" path="res://scenes/move_platform.gd" id="1_6vid0"]
 [ext_resource type="Texture2D" uid="uid://cjlh7f0vjn1g7" path="res://icons/podjomnik_1.png" id="2_j2iwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlxd2"]
@@ -8,7 +8,6 @@ size = Vector2(64, 5)
 
 [node name="test_platform" type="AnimatableBody2D"]
 script = ExtResource("1_6vid0")
-move_y = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

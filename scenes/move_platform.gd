@@ -1,16 +1,19 @@
 extends AnimatableBody2D
+@export var move_x:int
 @export var move_y:int
 @export var n_p:int
 @export var time_to_move:int
 var time = 0
 var moved_ = false
-var pos_
+var pos_y
+var pos_x
 var number_platform 
 func _ready():
 	$time_to_move.wait_time = time_to_move
 	set_physics_process(false)
 	number_platform = 0
-	pos_ = global_position.y
+	pos_y = global_position.y
+	pos_x = global_position.x
 func stop_platform():
 	set_physics_process(false)
 	if moved_:
@@ -19,15 +22,35 @@ func stop_platform():
 		moved_ = true
 func _physics_process(delta):
 	if not moved_:
-		if position.y > (pos_- move_y):
-			position.y -= .5
+		if move_x !=0:
+			if position.x < (pos_x+move_x):
+				position.x += .5
+			else:
+				stop_platform()
 		else:
-			stop_platform()
+			pass
+		if move_y !=0:
+			if position.y > (pos_y- move_y):
+				position.y -= .5
+			else:
+				stop_platform()
+		else:
+			pass
 	else:
-		if position.y < pos_:
-			position.y += .5
+		if move_x !=0:
+			if position.x > pos_x:
+				position.x -= .5
+			else:
+				stop_platform()
 		else:
-			stop_platform()
+			pass
+		if move_y !=0:
+			if position.y < pos_y:
+				position.y += .5
+			else:
+				stop_platform()
+		else:
+			pass
 func _on_platform_toggle_n_p():
 	number_platform +=1
 func _on_platform_toggle_push_n_p():
