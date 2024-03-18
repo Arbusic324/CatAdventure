@@ -3,11 +3,14 @@ extends AnimatableBody2D
 @export var move_y:int
 @export var n_p:int
 @export var time_to_move:int
+@export var velocity_plat_x:float
+@export var velocity_plat_y:float
 var time = 0
 var moved_ = false
 var pos_y
 var pos_x
 var number_platform 
+var complited = [false,false]
 func _ready():
 	$time_to_move.wait_time = time_to_move
 	set_physics_process(false)
@@ -21,36 +24,41 @@ func stop_platform():
 	else:
 		moved_ = true
 func _physics_process(delta):
+	if complited[0] == true and complited[1] == true:
+		complited[1] = false
+		complited[0] = false
+		print("che")
+		stop_platform()
 	if not moved_:
-		if move_x !=0:
-			if position.x < (pos_x+move_x):
-				position.x += .5
+		if move_x != 0: 
+			if position.x < (pos_x + move_x):
+				position.x += velocity_plat_x
 			else:
-				stop_platform()
+				complited[0] = true
 		else:
-			pass
-		if move_y !=0:
-			if position.y > (pos_y- move_y):
-				position.y -= .5
+			complited[0] = true
+		if move_y != 0:
+			if position.y > (pos_y - move_y):
+				position.y -= velocity_plat_y
 			else:
-				stop_platform()
+				complited[1] = true
 		else:
-			pass
+			complited[1] = true
 	else:
-		if move_x !=0:
+		if move_x != 0:
 			if position.x > pos_x:
-				position.x -= .5
+				position.x -= velocity_plat_x
 			else:
-				stop_platform()
+				complited[0] = true
 		else:
-			pass
-		if move_y !=0:
+			complited[0] = true
+		if move_y != 0:
 			if position.y < pos_y:
-				position.y += .5
+				position.y += velocity_plat_y
 			else:
-				stop_platform()
+				complited[1] = true
 		else:
-			pass
+			complited[1] = true
 func _on_platform_toggle_n_p():
 	number_platform +=1
 func _on_platform_toggle_push_n_p():

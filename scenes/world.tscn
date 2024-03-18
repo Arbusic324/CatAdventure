@@ -716,9 +716,14 @@ layer_0/tile_data = PackedInt32Array(-458726, 1, 0, -458725, 65537, 0, -458724, 
 [node name="platform" type="Node2D" parent="."]
 
 [node name="test_platform" parent="platform" instance=ExtResource("10_jfue0")]
-position = Vector2(589, -66)
-move_y = 10
+position = Vector2(582, -67)
+sync_to_physics = false
+move_x = 20
+move_y = 40
 n_p = 5
+time_to_move = 1
+velocity_plat_x = 0.5
+velocity_plat_y = 1.0
 
 [node name="platform_toggle" parent="platform" instance=ExtResource("11_ldiwv")]
 z_index = -1
