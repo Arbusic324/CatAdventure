@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://6xp4osbnbpy5"]
+
+[ext_resource type="Script" path="res://scenes/move_platform.gd" id="1_6vid0"]
+[ext_resource type="Texture2D" uid="uid://cjlh7f0vjn1g7" path="res://icons/podjomnik_1.png" id="2_j2iwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlxd2"]
+size = Vector2(64, 5)
+
+[node name="test_platform" type="AnimatableBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_6vid0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_vlxd2")
+
+[node name="perila" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(0, -5)
+texture = ExtResource("2_j2iwo")
+vframes = 3
+frame = 2
+
+[node name="main" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_j2iwo")
+vframes = 3
+frame = 1
+
+[node name="time_to_move" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+
+[connection signal="timeout" from="time_to_move" to="." method="_on_time_to_move_timeout"]
