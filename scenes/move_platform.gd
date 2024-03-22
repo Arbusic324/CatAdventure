@@ -31,14 +31,14 @@ func _physics_process(delta):
 		stop_platform()
 	if not moved_:
 		if move_x != 0: 
-			if position.x < (pos_x + move_x):
+			if position.x <= (pos_x + move_x):
 				position.x += velocity_plat_x
 			else:
 				complited[0] = true
 		else:
 			complited[0] = true
 		if move_y != 0:
-			if position.y > (pos_y - move_y):
+			if position.y >= (pos_y - move_y):
 				position.y -= velocity_plat_y
 			else:
 				complited[1] = true
@@ -46,14 +46,14 @@ func _physics_process(delta):
 			complited[1] = true
 	else:
 		if move_x != 0:
-			if position.x > pos_x:
+			if position.x >= pos_x:
 				position.x -= velocity_plat_x
 			else:
 				complited[0] = true
 		else:
 			complited[0] = true
 		if move_y != 0:
-			if position.y < pos_y:
+			if position.y <= pos_y:
 				position.y += velocity_plat_y
 			else:
 				complited[1] = true
