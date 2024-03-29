@@ -129,6 +129,7 @@ move_x = 48
 n_p = 5
 velocity_plat_x = 0.5
 velocity_plat_y = 0.5
+inversi = true
 
 [node name="platform_toggle" parent="platform" instance=ExtResource("10_4vlen")]
 z_index = -1

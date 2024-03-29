@@ -5,6 +5,7 @@ extends AnimatableBody2D
 @export var time_to_move:int
 @export var velocity_plat_x:float
 @export var velocity_plat_y:float
+@export var inversi:bool
 var time = 0
 var moved_ = false
 var pos_y
@@ -27,36 +28,57 @@ func _physics_process(delta):
 	if complited[0] == true and complited[1] == true:
 		complited[1] = false
 		complited[0] = false
-		print("che")
 		stop_platform()
 	if not moved_:
 		if move_x != 0: 
-			if position.x <= (pos_x + move_x):
-				position.x += velocity_plat_x
+			if not inversi: 
+				if position.x <= (pos_x + move_x):
+					position.x += velocity_plat_x
+				else:
+					complited[0] = true
 			else:
-				complited[0] = true
+				if position.x >= (pos_x - move_x):
+					position.x -= velocity_plat_x
+				else:
+					complited[0] = true
 		else:
 			complited[0] = true
 		if move_y != 0:
-			if position.y >= (pos_y - move_y):
-				position.y -= velocity_plat_y
+			if not inversi:
+				if position.y >= (pos_y - move_y):
+					position.y -= velocity_plat_y
+				else:
+					complited[1] = true
 			else:
-				complited[1] = true
+				if position.y <= (pos_y + move_y):
+					position.y += velocity_plat_y
 		else:
 			complited[1] = true
 	else:
 		if move_x != 0:
-			if position.x >= pos_x:
-				position.x -= velocity_plat_x
+			if not inversi:
+				if position.x >= pos_x:
+					position.x -= velocity_plat_x
+				else:
+					complited[0] = true
 			else:
-				complited[0] = true
+				if position.x <= pos_x:
+					position.x += velocity_plat_x
+				else:
+					complited[0] = true
 		else:
 			complited[0] = true
 		if move_y != 0:
-			if position.y <= pos_y:
-				position.y += velocity_plat_y
+			if not inversi:
+				if position.y <= pos_y:
+					position.y += velocity_plat_y
+				else:
+					complited[1] = true
 			else:
-				complited[1] = true
+				if position.y >= pos_y:
+					position.y -+ velocity_plat_y
+				else:
+					complited[1] = true
 		else:
 			complited[1] = true
 func _on_platform_toggle_n_p():
