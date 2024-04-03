@@ -63,18 +63,30 @@ var po_lest = false
 var x_input_uv = true
 var contr_1_touch = false
 var contr_2_touch = false
-#####################################################################
+##################################################################### LOGIC AND ATTACK
+var can_make_attack_logic = true
+####################
 func heal():
 	if HP <3:
 		emit_signal("eated")
 		emit_signal("Heart_bonus")
 		HP +=1
+func attack_logic_int(uv): ####### ВСЕ ПЕРЕДЕЛАНО
+		if uv:
+			$"attack_logic_controller/attack_area(logic)/CollisionShape2D".disabled = false #### ПРАВЫЙ КОНТРОЛЕРР
+		else:
+			$"attack_logic_controller/DONE_attack_area(logic)/CollisionShape2D".disabled = false ########3 ЛЕВЫЙ КОНТРОЛЛЕР
+		$attack_logic_controller/Timer.start()
+		$attack_logic_controller/time_int_attack_logic.start()
 func _ready():
 	checkpoint_pos = global_position
 	########################################### HUD################
 	#############################################################3
-	
 func _physics_process(delta):
+	if can_make_attack_logic:
+		if Input.is_action_just_pressed("attack_logic_int"):
+			can_make_attack_logic = false
+			attack_logic_int(x_input_uv)
 	if can_make_checkpoint and Input.is_action_just_pressed("RESET") and HP > 0:
 		checkpoint_number +=1
 		if checkpoint_number > 0:
@@ -168,7 +180,7 @@ func _physics_process(delta):
 		int_li = false
 	##################################################### ВЫВОД ИНФЫ В КОСНОЛЬ
 	if Input.is_action_just_pressed("ui_accept"):
-		print(checkpoint_number)
+		#print(checkpoint_number)
 		pass
 	###################################################### ON OR OFF RITM
 	if Input.is_action_just_pressed("Ritm_start") and ritm_started == false:
@@ -214,6 +226,7 @@ func _on_trap_slow_no_touched_slow_trap():
 	speed = 100
 func _on_trap_slow_touched_slow_trap():
 	speed = 30
+
 
 func _process(delta):
 	if HP == 0 and redeem == false:
@@ -339,3 +352,10 @@ func _on_food_for_heart_3_proverka_hp():
 
 func _on_platform_toggle_player_int():
 	emit_signal("new_checkpoint")
+
+
+func _on_timer_timeout():
+	can_make_attack_logic = true
+func _on_time_int_attack_logic_timeout():
+	$"attack_logic_controller/attack_area(logic)/CollisionShape2D".disabled = true
+	$"attack_logic_controller/DONE_attack_area(logic)/CollisionShape2D".disabled = true

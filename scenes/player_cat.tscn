@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://d0bpshyhqttxe"]
+[gd_scene load_steps=49 format=3 uid="uid://d0bpshyhqttxe"]
 
 [ext_resource type="Script" path="res://scripts/Player_cat.gd" id="1_xul5c"]
 [ext_resource type="Texture2D" uid="uid://duaqmukigu7q5" path="res://icons/cat_body.png" id="2_i0i5y"]
@@ -581,6 +581,12 @@ _data = {
 "perfect": SubResource("Animation_ohjer")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrjyt"]
+size = Vector2(5.75, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hojc8"]
+size = Vector2(6, 11)
+
 [node name="Player_cat" type="CharacterBody2D"]
 process_priority = 1
 position = Vector2(-1, -8)
@@ -718,6 +724,36 @@ speed_scale = 2.0
 wait_time = 0.4
 one_shot = true
 
+[node name="attack_logic_controller" type="Node2D" parent="."]
+
+[node name="attack_area(logic)" type="Area2D" parent="attack_logic_controller"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_logic_controller/attack_area(logic)"]
+position = Vector2(4.875, 2.5)
+shape = SubResource("RectangleShape2D_xrjyt")
+disabled = true
+debug_color = Color(0.333333, 0.486275, 1, 0.419608)
+
+[node name="DONE_attack_area(logic)" type="Area2D" parent="attack_logic_controller"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_logic_controller/DONE_attack_area(logic)"]
+position = Vector2(-7, 2.5)
+shape = SubResource("RectangleShape2D_hojc8")
+disabled = true
+debug_color = Color(0.956863, 0.0941176, 0.470588, 0.419608)
+
+[node name="Timer" type="Timer" parent="attack_logic_controller"]
+wait_time = 0.2
+one_shot = true
+
+[node name="time_int_attack_logic" type="Timer" parent="attack_logic_controller"]
+wait_time = 0.05
+one_shot = true
+
 [connection signal="Flip_h" from="." to="Animation_cringe" method="_on_player_cat_flip_h"]
 [connection signal="Flip_h__" from="." to="Animation_cringe" method="_on_player_cat_flip_h__"]
 [connection signal="Idle" from="." to="Animation_cringe" method="_on_player_cat_idle"]
@@ -759,3 +795,5 @@ one_shot = true
 [connection signal="timeout" from="Animation_cringe/time_to_redeem" to="Animation_cringe" method="_on_time_to_redeem_timeout"]
 [connection signal="timeout" from="Animation_cringe/Time_stage_checkpoint" to="Animation_cringe" method="_on_time_stage_checkpoint_timeout"]
 [connection signal="timeout" from="quality_tap/time_to_quefree_quality" to="." method="_on_time_to_quefree_quality_timeout"]
+[connection signal="timeout" from="attack_logic_controller/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="attack_logic_controller/time_int_attack_logic" to="." method="_on_time_int_attack_logic_timeout"]
