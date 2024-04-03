@@ -85,8 +85,8 @@ func _ready():
 func _physics_process(delta):
 	if can_make_attack_logic:
 		if Input.is_action_just_pressed("attack_logic_int"):
-			can_make_attack_logic = false
 			attack_logic_int(x_input_uv)
+			can_make_attack_logic = false
 	if can_make_checkpoint and Input.is_action_just_pressed("RESET") and HP > 0:
 		checkpoint_number +=1
 		if checkpoint_number > 0:

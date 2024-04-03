@@ -10,10 +10,11 @@ size = Vector2(16, 16)
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr38g"]
-size = Vector2(28, 16)
+size = Vector2(22, 22)
 
 [node name="logic_create" type="RigidBody2D"]
 position = Vector2(307, -40)
+mass = 2.0
 can_sleep = false
 script = ExtResource("1_iyxsh")
 power_push = 200

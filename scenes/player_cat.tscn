@@ -712,7 +712,6 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("9_kown4")
 hframes = 2
 vframes = 3
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="quality_tap/quality_text"]
 libraries = {
@@ -751,7 +750,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="time_int_attack_logic" type="Timer" parent="attack_logic_controller"]
-wait_time = 0.05
+wait_time = 0.1
 one_shot = true
 
 [connection signal="Flip_h" from="." to="Animation_cringe" method="_on_player_cat_flip_h"]

@@ -139,10 +139,11 @@ position = Vector2(537, -51)
 number_platform = 5
 
 [node name="logic_create" parent="." instance=ExtResource("11_lk44n")]
+position = Vector2(307, -41)
 
 [node name="logic_create2" parent="." instance=ExtResource("11_lk44n")]
-position = Vector2(278, -40)
-power_push = 300
+position = Vector2(278, -41)
+power_push = 400
 
 [connection signal="Flip_h" from="Player_cat" to="new_checkpoint" method="_on_player_cat_flip_h"]
 [connection signal="Flip_h__" from="Player_cat" to="new_checkpoint" method="_on_player_cat_flip_h__"]
