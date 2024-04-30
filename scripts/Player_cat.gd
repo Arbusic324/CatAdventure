@@ -28,6 +28,7 @@ signal Rotate_left
 signal Rotate_normal
 signal Update_anim
 signal tact
+signal move_create
 ########################
 var quality_count = 0
 var quality_pos_x = 0
@@ -74,19 +75,22 @@ func heal():
 func attack_logic_int(uv): ####### ВСЕ ПЕРЕДЕЛАНО
 		if uv:
 			$"attack_logic_controller/attack_area(logic)/CollisionShape2D".disabled = false #### ПРАВЫЙ КОНТРОЛЕРР
+			$"attack_logic_controller/DONE_attack_area(logic)/CollisionShape2D".disabled = true ##### ЛЕВЫЙ КОНТРОЛЛЕр
 		else:
+			$"attack_logic_controller/attack_area(logic)/CollisionShape2D".disabled = true #### ПРАВЫЙ КОНТРОЛЕРР
 			$"attack_logic_controller/DONE_attack_area(logic)/CollisionShape2D".disabled = false ########3 ЛЕВЫЙ КОНТРОЛЛЕР
-		$attack_logic_controller/Timer.start()
-		$attack_logic_controller/time_int_attack_logic.start()
+		#$attack_logic_controller/Timer.start()
+		#$attack_logic_controller/time_int_attack_logic.start()
 func _ready():
 	checkpoint_pos = global_position
 	########################################### HUD################
 	#############################################################3
 func _physics_process(delta):
-	if can_make_attack_logic:
-		if Input.is_action_just_pressed("attack_logic_int"):
-			attack_logic_int(x_input_uv)
-			can_make_attack_logic = false
+	#print($attack_logic_controller/Area2D/CollisionShape2D.disabled)
+	#if can_make_attack_logic:
+	#	if Input.is_action_just_pressed("attack_logic_int"):
+	#		attack_logic_int(x_input_uv)
+	#		can_make_attack_logic = false
 	if can_make_checkpoint and Input.is_action_just_pressed("RESET") and HP > 0:
 		checkpoint_number +=1
 		if checkpoint_number > 0:
@@ -135,10 +139,19 @@ func _physics_process(delta):
 		emit_signal("not_stair_ed")
 	if stuck_proverka_ == true:
 		set_collision_mask_value(1,0)
-	if x_input > 0:
-		x_input_uv = true
-	elif x_input < 0:
-		x_input_uv = false
+	if x_input != 0:
+		if Input.is_action_pressed("attack_logic_int"):
+			speed = 80
+			attack_logic_int(x_input_uv)
+			emit_signal("move_create")
+		else:
+			speed = 100
+			$"attack_logic_controller/attack_area(logic)/CollisionShape2D".disabled = true 
+			$"attack_logic_controller/DONE_attack_area(logic)/CollisionShape2D".disabled = true
+		if x_input > 0:
+			x_input_uv = true
+		elif x_input < 0:
+			x_input_uv = false
 	if contr_1_touch == false and contr_2_touch == false:
 		s_lest = false
 		po_lest = false

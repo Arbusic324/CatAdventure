@@ -18,6 +18,7 @@ var live = true
 var stage_rejevatorion = true
 var stage_died = false
 var stage_checkpoint = false
+var move_object = false
 func _ready():
 	head_idle_on = false
 	idle = false
@@ -64,7 +65,7 @@ func _on_player_cat_update_anim():
 		$sprite_body.offset.x = 0
 		$sprite_head.offset.x = 0
 	if pos_active == false and fail_time == false and live == true:
-		if idle == true and run == false:
+		if idle == true and run == false and move_object == false:
 			if stage_checkpoint:
 				$Animation_head.play("Check_point")
 			else:
@@ -86,17 +87,31 @@ func _on_player_cat_update_anim():
 						$sprite_body.offset.x = -16
 						$sprite_head.offset.x = -16
 			else:
+				$sprite_body.offset.x = 0
+				$sprite_head.offset.x = 0
 				if stage_checkpoint:
 					$Animation_body.play("Check_point")
 				else:
 					$Animation_body.play("idle")
-		elif idle == false and run == true and jump_li == 0:
+		elif idle == false and run == true and jump_li == 0 and move_object == false:
 			if staired_li == false:
 				$Animation_body.play("walk")
 				$Animation_head.play("walk")
 			else:
 				$Animation_body.play("walk_stair")
 				$Animation_head.play("walk_stair")
+		elif move_object:
+			if UV:
+				$sprite_body.offset.x = 13
+				$sprite_head.offset.x = 13
+			else:
+				$sprite_body.offset.x = -13
+				$sprite_head.offset.x = -13
+			$Animation_body.play("move_create")
+			$Animation_head.play("move_create")
+		else:
+			$sprite_body.offset.x = 0
+			$sprite_head.offset.x = 0
 		if jump_li !=0:
 			if jump_li == 1:
 				$Animation_body.play("jump")
@@ -104,6 +119,7 @@ func _on_player_cat_update_anim():
 			elif jump_li == 2:
 				$Animation_body.play("fall")
 				$Animation_head.play("fall")
+		
 	elif fail_time:
 		$Animation_body.play("fail_int")
 		$Animation_head.play("fail_int")
@@ -174,3 +190,9 @@ func _on_player_cat_new_checkpoint():
 
 func _on_time_stage_checkpoint_timeout():
 	stage_checkpoint = false
+	
+func _on_player_cat_move_create():
+	$proverka_move_object.start()
+	move_object = true
+func _on_proverka_move_object_timeout():
+	move_object = false

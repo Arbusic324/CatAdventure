@@ -12,8 +12,10 @@ func _ready():
 	$food_2.visible = false
 	if food_random[0] == 0:
 		$food_1.visible = true
-	elif food_random[0] == 1:
+	else:
 		$food_2.visible = true
+	if food_random[1] == 1:
+		scale.x = -1
 func _physics_process(delta):
 	var uv
 	if food_random[1] > 0:
